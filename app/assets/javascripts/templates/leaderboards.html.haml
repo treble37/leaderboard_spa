@@ -1,0 +1,11 @@
+%div#section
+  %table.pure-table
+    %thead
+      %tr
+        %th Index #
+        %th Name 
+    %tbody
+      %tr{"ng-repeat" => "leaderboard in leaderboards track by $index"}
+        %td {{$index}}
+        %td
+          %a{href: '#/leaderboards/{{leaderboard.id}}/users'} {{leaderboard.name}}

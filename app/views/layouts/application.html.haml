@@ -1,0 +1,21 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+    %title Leaderboard
+    %meta{:content => "Leaderboard demo", :name => "description"}
+    %link{:href => "http://yui.yahooapis.com/pure/0.6.0/pure-min.css", :rel => "stylesheet"}
+    %link{ :href=> "https://cdn.rawgit.com/konpa/devicon/89f2f44ba07ea3fff7e561c2142813b278c2d6c6/devicon.min.css", :rel=> "stylesheet"}
+    /[if lte IE 8]
+      <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
+    / [if gt IE 8]><!
+    %link{:href => "http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css", :rel => "stylesheet"}
+      / <![endif]
+    %link{:href => "http://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css", :rel => "stylesheet"}
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+  %body{ "ng-app"=>"leaderApp"}
+    %div{ "ng-view" => ""}
+    = render 'layouts/header'

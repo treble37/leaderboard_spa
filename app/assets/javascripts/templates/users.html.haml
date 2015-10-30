@@ -1,0 +1,40 @@
+%div#section
+  %h2.post-title Leaderboard
+  %div.pure-g#layout
+    %div.pure-u-1.pure-u-md-1-8
+      %button.pure-button.post-category-design{"ng-click" => "setSortType('games_won')"} Sort By Wins
+    %div.pure-u-1.pure-u-md-1-8
+      %button.pure-button.post-category-js{"ng-click" => "setSortType('games_lost')"} Sort By Losses
+    %div.pure-u-1.pure-u-md-1-8
+      %button.pure-button{"ng-click" => "setSortType('win_loss_ratio')"}Sort By W/L Ratio
+    %div.pure-u-1.pure-u-md-1-12
+    %div.pure-form.pure-u-1.pure-u-md-1-6
+      %input{ type: "text", "ng-model" => "newPlayer" }
+    %div.pure-u-1.pure-u-md-1-8
+      %button.pure-button.post-category-yui{"ng-click" => "addPlayer(newPlayer)"} Add Player
+
+  %table.pure-table
+    %thead
+      %tr
+        %th Name
+        %th Wins
+        %th Losses
+        %th Win/Loss Ratio
+        %th [Increment Games Won]
+        %th [Increment Games Lost] 
+        %th [Delete User]
+    %tbody
+      %tr{"ng-repeat" => "user in users | orderBy:sortType:true track by $index"}
+        %td {{user.name}}
+        %td {{user.games_won}}
+        %td {{user.games_lost}}
+        %td {{user.win_loss_ratio | number:2}}
+        %td
+          %a{href: "#", "ng-click" => "changeGamesWonLost(user, 'won', $event)"}
+            %i.fa.fa-thumbs-up
+        %td
+          %a{href: "#", "ng-click" => "changeGamesWonLost(user, 'lost', $event)"}
+            %i.fa.fa-thumbs-down
+        %td
+          %a{href: "#", "ng-click" => "deleteUser(user, $index, $event)" }
+            %i.fa.fa-times
